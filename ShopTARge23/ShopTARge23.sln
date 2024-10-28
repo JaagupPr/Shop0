@@ -9,14 +9,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopTARge23", "ShopTARge23\
 		{D34803D7-2BF3-4050-9020-6E1240718202} = {D34803D7-2BF3-4050-9020-6E1240718202}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopTARge23.Core", "ShopTARge23.Core\ShopTARge23.Core.csproj", "{F72AEA25-6794-4BEF-8142-386DFB92E10B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopTARge23.Core", "ShopTARge23.Core\ShopTARge23.Core.csproj", "{F72AEA25-6794-4BEF-8142-386DFB92E10B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopTARge23.Data", "ShopTARge23.Data\ShopTARge23.Data.csproj", "{06BBE629-BDDD-4ED7-9BE2-3E9D73E2E5CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopTARge23.Data", "ShopTARge23.Data\ShopTARge23.Data.csproj", "{06BBE629-BDDD-4ED7-9BE2-3E9D73E2E5CE}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F72AEA25-6794-4BEF-8142-386DFB92E10B} = {F72AEA25-6794-4BEF-8142-386DFB92E10B}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopTARge23.ApplicationServices", "ShopTARge23.ApplicationServices\ShopTARge23.ApplicationServices.csproj", "{D34803D7-2BF3-4050-9020-6E1240718202}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopTARge23.ApplicationServices", "ShopTARge23.ApplicationServices\ShopTARge23.ApplicationServices.csproj", "{D34803D7-2BF3-4050-9020-6E1240718202}"
 	ProjectSection(ProjectDependencies) = postProject
 		{06BBE629-BDDD-4ED7-9BE2-3E9D73E2E5CE} = {06BBE629-BDDD-4ED7-9BE2-3E9D73E2E5CE}
 	EndProjectSection
