@@ -19,6 +19,8 @@ namespace ShopTARge23
             builder.Services.AddScoped<ISpaceshipsServices, SpaceshipsServices>();
             builder.Services.AddScoped<IFileServices, FileServices>();
             builder.Services.AddScoped<IRealEstateServices, RealEstateServices>();
+            builder.Services.AddScoped<IKindergartensServices, KindergartensServices>();
+
 
             builder.Services.AddDbContext<ShopTARge23Context>(options =>
                            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -51,6 +53,8 @@ namespace ShopTARge23
             app.MapControllerRoute(
             name: "default",
             pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
 
             app.Run();
         }
