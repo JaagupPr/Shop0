@@ -78,5 +78,80 @@ namespace ShopTARge23.Controllers
 
             return View(vm);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(Guid id)
+        {
+            var realEstate = await _realEstateServices.GetAsync(id);
+            if (realEstate == null)
+            {
+                return NotFound();
+            }
+            var vm = new RealEstatesCreateUpdateViewModel();
+            vm.Id = realEstate.Id;
+            vm.Size = realEstate.Size;
+            vm.Location = realEstate.Location;
+            vm.RoomNumber = realEstate.RoomNumber;
+            vm.BuildingType = realEstate.BuildingType;
+            vm.CreatedAt = realEstate.CreatedAt;
+            vm.ModifiedAt = realEstate.ModifiedAt;
+            return View("CreateUpdate", vm);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Update(RealEstatesCreateUpdateViewModel vm)
+        {
+            var dto = new RealEstateDto()
+            {
+                Id = vm.Id,
+                Size = vm.Size,
+                Location = vm.Location,
+                RoomNumber = vm.RoomNumber,
+                BuildingType = vm.BuildingType,
+                CreatedAt = vm.CreatedAt,
+                ModifiedAt = vm.ModifiedAt
+            };
+            var result = await _realEstateServices.Update(dto);
+
+            if (result == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction(nameof(Index), vm);
+        }
+
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var realEstate = await _realEstateServices.GetAsync(id);
+
+            if (realEstate == null)
+            {
+                return NotFound();
+            }
+            var vm = new RealEstatesDeleteViewModel();
+
+            vm.Id = realEstate.Id;
+            vm.Size = realEstate.Size;
+            vm.Location = realEstate.Location;
+            vm.RoomNumber = realEstate.RoomNumber;
+            vm.BuildingType = realEstate.BuildingType;
+            vm.CreatedAt = realEstate.CreatedAt;
+            vm.ModifiedAt = realEstate.ModifiedAt;
+
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmation(Guid id)
+        {
+            var realEstate = await _realEstateServices.Delete(id);
+
+            if (realEstate == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
