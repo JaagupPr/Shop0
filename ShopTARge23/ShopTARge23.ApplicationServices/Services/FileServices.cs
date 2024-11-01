@@ -1,10 +1,9 @@
-﻿﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using ShopTARge23.Core.Domain;
 using ShopTARge23.Core.Dto;
 using ShopTARge23.Core.ServiceInterface;
 using ShopTARge23.Data;
-
 
 namespace ShopTARge23.ApplicationServices.Services
 {
@@ -22,7 +21,6 @@ namespace ShopTARge23.ApplicationServices.Services
             _webHost = webHost;
             _context = context;
         }
-
 
         public void FilesToApi(SpaceshipDto dto, Spaceship spaceship)
         {
@@ -52,22 +50,26 @@ namespace ShopTARge23.ApplicationServices.Services
                 }
             }
         }
+
         public async Task<List<FileToApi>> RemoveImagesFromApi(FileToApiDto[] dtos)
         {
             foreach (var dto in dtos)
             {
                 var imageId = await _context.FileToApis
                     .FirstOrDefaultAsync(x => x.ExistingFilePath == dto.ExistingFilePath);
-                var filePath = _webHost.ContentRootPath + "\\multipleFileUpload\\"
-                    + imageId.ExistingFilePath;
+                var filePath = _webHost.ContentRootPath + "\\multipleFileUpload\\" + imageId.ExistingFilePath;
+
                 if (File.Exists(filePath))
                 {
                     File.Delete(filePath);
                 }
+
                 _context.FileToApis.Remove(imageId);
                 await _context.SaveChangesAsync();
             }
+
             return null;
         }
+
+        }
     }
-}
