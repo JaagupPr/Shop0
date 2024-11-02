@@ -106,11 +106,26 @@ namespace ShopTARge23.Controllers
         public async Task<IActionResult> Update(Guid id)
         {
             var realEstate = await _realEstateServices.GetAsync(id);
+
             if (realEstate == null)
+
             {
                 return NotFound();
             }
+
+            var photos = await _context.FileToDatabases
+               .Where(x => x.RealEstateId == id)
+               .Select(y => new RealEstateImageViewModel
+               {
+                   RealEstateId = y.Id,
+                   ImageId = y.Id,
+                   ImageData = y.ImageData,
+                   ImageTitle = y.ImageTitle,
+                   Image = string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(y.ImageData))
+               }).ToArrayAsync();
+
             var vm = new RealEstatesCreateUpdateViewModel();
+
             vm.Id = realEstate.Id;
             vm.Size = realEstate.Size;
             vm.Location = realEstate.Location;
@@ -118,6 +133,8 @@ namespace ShopTARge23.Controllers
             vm.BuildingType = realEstate.BuildingType;
             vm.CreatedAt = realEstate.CreatedAt;
             vm.ModifiedAt = realEstate.ModifiedAt;
+            vm.Image.AddRange(photos);
+
             return View("CreateUpdate", vm);
         }
         [HttpPost]
@@ -131,7 +148,16 @@ namespace ShopTARge23.Controllers
                 RoomNumber = vm.RoomNumber,
                 BuildingType = vm.BuildingType,
                 CreatedAt = vm.CreatedAt,
-                ModifiedAt = vm.ModifiedAt
+                ModifiedAt = vm.ModifiedAt,
+                Files = vm.Files,
+                Image = vm.Image
+                    .Select(x => new FileToDatabaseDto
+                    {
+                        Id = x.ImageId,
+                        ImageData = x.ImageData,
+                        ImageTitle = x.ImageTitle,
+                        RealEstateId = x.RealEstateId,
+                    }).ToArray()
             };
             var result = await _realEstateServices.Update(dto);
 
