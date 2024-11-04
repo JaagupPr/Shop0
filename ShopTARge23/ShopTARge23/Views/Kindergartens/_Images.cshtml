@@ -1,0 +1,10 @@
+﻿@model ShopTARge23.Models.Kindergarten.KindergartenImageViewModel
+
+@{
+    var photoPaths = "~/multipleFileUpload" + (Model.FilePath ?? "MyImage.jpg");
+}
+
+<div class="form-group row col-sm-4 offset-2">
+    <div>@Model.ImageTitles</div>
+    <img class="card-img-top" src="/multipleFileUpload/@Model.ExistingFilePath" alt="Image" />
+</div>
