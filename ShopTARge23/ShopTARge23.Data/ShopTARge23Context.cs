@@ -13,8 +13,6 @@ namespace ShopTARge23.Data
         public DbSet<RealEstate> RealEstates { get; set; }
         public DbSet<FileToDatabase> FileToDatabases { get; set; }
         public DbSet<Kindergarten> Kindergartens { get; set; }
-
-
-
+        public DbSet<FileToData> FileToDatas { get; set; }
     }
 }

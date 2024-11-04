@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShopTARge23.Data;
 
@@ -11,9 +12,11 @@ using ShopTARge23.Data;
 namespace ShopTARge23.Data.Migrations
 {
     [DbContext(typeof(ShopTARge23Context))]
-    partial class ShopTARge23ContextModelSnapshot : ModelSnapshot
+    [Migration("20241103220617_FileToData")]
+    partial class FileToData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,20 +43,12 @@ namespace ShopTARge23.Data.Migrations
                     b.ToTable("FileToApis");
                 });
 
-            modelBuilder.Entity("ShopTARge23.Core.Domain.FileToDatabase", b =>
             modelBuilder.Entity("ShopTARge23.Core.Domain.FileToData", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<byte[]>("ImageData")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("ImageTitle")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("RealEstateId")
                     b.Property<string>("ExistingFilePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -69,10 +64,6 @@ namespace ShopTARge23.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FileToDatabases");
-                });
-
-            modelBuilder.Entity("ShopTARge23.Core.Domain.RealEstate", b =>
                     b.ToTable("FileToDatas");
                 });
 
@@ -82,49 +73,11 @@ namespace ShopTARge23.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("BuildingType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-                    b.Property<int>("ChildrenCount")
                     b.Property<int?>("ChildrenCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("RoomNumber")
-                        .HasColumnType("int");
-
-                    b.Property<double?>("Size")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("RealEstates");
-                });
-
-            modelBuilder.Entity("ShopTARge23.Core.Domain.Spaceship", b =>
-                {
-                    b.Property<Guid?>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("BuiltDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("Crew")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("EnginePower")
-                        .HasColumnType("int");
 
                     b.Property<string>("GroupName")
                         .HasColumnType("nvarchar(max)");
