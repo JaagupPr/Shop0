@@ -1,4 +1,4 @@
-﻿namespace ShopTARge23.Core.Dto.WeatherDtos.AccuWeatherDtos
+﻿namespace ShopTARge23.Core.Dto.AccuWeatherDtos
 {
     public class AccuLocationWeatherResultDto
     {
@@ -6,12 +6,12 @@
         public string CityCode { get; set; }
         public int Rank { get; set; }
         public string EffectiveDate { get; set; }
-        public Int64 EffectiveEpochDate { get; set; }
+        public long EffectiveEpochDate { get; set; }
         public int Severity { get; set; }
         public string Text { get; set; }
         public string Category { get; set; }
         public string EndDate { get; set; }
-        public Int64 EndEpochDate { get; set; }
+        public long EndEpochDate { get; set; }
         public string DailyForecastsDate { get; set; }
         public int DailyForecastsEpochDate { get; set; }
         public double TempMinValue { get; set; }
