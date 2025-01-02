@@ -4,6 +4,7 @@ using ShopTARge23.ApplicationServices.Services;
 using ShopTARge23.Core.ServiceInterface;
 using ShopTARge23.Data;
 
+
 namespace ShopTARge23
 {
     public class Program
@@ -18,11 +19,15 @@ namespace ShopTARge23
             builder.Services.AddScoped<ISpaceshipsServices, SpaceshipsServices>();
             builder.Services.AddScoped<IFileServices, FileServices>();
             builder.Services.AddScoped<IRealEstateServices, RealEstateServices>();
-            builder.Services.AddScoped<IChuckNorrisServices, ChuckNorrisServices>();
             builder.Services.AddScoped<IWeatherForecastServices, WeatherForecastServices>();
+            builder.Services.AddScoped<IChuckNorrisServices, ChuckNorrisServices>();
             builder.Services.AddScoped<IFreeToGamesServices, FreeToGamesServices>();
+            builder.Services.AddScoped<IFreeToGamesServices, FreeToGamesServices>();
+            builder.Services.AddScoped<ICocktailServices, CocktailServices>();
+
+
             builder.Services.AddDbContext<ShopTARge23Context>(options =>
-                           options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
             var app = builder.Build();
@@ -41,7 +46,7 @@ namespace ShopTARge23
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider
-                (Path.Combine(builder.Environment.ContentRootPath, "multipleFileUpload")),
+            (Path.Combine(builder.Environment.ContentRootPath, "multipleFileUpload")),
                 RequestPath = "/multipleFileUpload"
             });
 
